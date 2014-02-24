@@ -34,5 +34,3 @@ def deleteItems(video_id):
 	db.commit()
 	return
 
-pushItems("Game of Thrones","what everybody should whatch","http://got.com")
-

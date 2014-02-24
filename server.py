@@ -2,11 +2,10 @@
 from flask import Flask , jsonify, render_template, request, Response,json,current_app
 from flask.ext.restful import Api, MethodView, fields, marshal, reqparse
 from flask.ext.httpauth import HTTPBasicAuth
-from cros import *
 import sqlscript, urllib
 
 ''' Youtube Video Listings main module. It constructs and handles requests.
-	GET requests are returned as json files
+	GET requests are returned as json files. Youtube Metadata retrieved using youtube's public API
 '''
 auth = HTTPBasicAuth()
 
@@ -41,12 +40,13 @@ class VideoListAPI(MethodView):
     	data=sqlscript.deleteItems(str(video_id))
     	return Response(json.dumps(data),  mimetype='application/json')
     	
-
+def webview(name=None):
+    return render_template('index.htm', name=name)
 
 VideoList_view = VideoListAPI.as_view('VideoList_api')
 app.add_url_rule('/video/',view_func=VideoList_view, methods=['GET','POST','OPTIONS'])
 app.add_url_rule('/video/<video_id>',view_func=VideoList_view, methods=['DELETE'])
-
+app.add_url_rule('/video/webview',view_func=webview)
 
 
 
