@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>Interesting YouTube Videos</title>
+    <script src="{{ url_for('static', filename='jquery-1.11.0.min.js') }}"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+</head>
+<body>
+      
+      <h2>Interesting YouTube Videos</h2>
+      <table class="table table-striped">
+       <tr><td><b>Title</b></td><td><b>Description</b></td><td><b>Link</b></td></tr>
+      </table>
+       
+
+<script type="text/javascript">
+ var url='http://0.0.0.0:5000/video/';
+ 
+$.getJSON(url,function( data ) {
+	console.log(data);
+     $(document).ready(function(){
+     	var tr;
+       	for (var i = 0; i < data.length; i++) {
+ 		tr = $('<tr/>');
+ 		tr.append("<td>" + data[i][1] + "</td>");
+ 		tr.append("<td>" + data[i][2] + "</td>");
+ 		tr.append("<td><a href=\"http://" + data[i][3] + "\">"+ "Watch" +"</a></td>");
+ 		$('table').append(tr);
+ 		};
+ 	});
+});
+
+</script>
+
+</body>
+</html>

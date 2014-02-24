@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>How to Parse a JSON file using jQuery</title>
+    
+    <style>
+        body{
+            text-align: center;
+            font-family: arial;
+        }
+
+        .button{
+            margin:20px;
+            font-size:16px;
+            font-weight: bold;
+            padding:5px 10px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <a href="data.json" target="_blank">Open JSON file</a><br />
+    <input type="button" value="Get and parse JSON" class="button" />
+    <br />
+    <span id="results"></span>
+
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+
+<script>
+
+
+$.ajax({
+    type: "GET",
+    dataType: 'application/json',
+    url: 'http://0.0.0.0:5000/video/',
+    crossDomain : 'true',
+})
+  .done(function( data ) {
+      console.log("done");
+  });
+    
+    </script>
+
+</body>
+</html>
